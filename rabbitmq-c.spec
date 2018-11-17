@@ -4,7 +4,7 @@
 #
 Name     : rabbitmq-c
 Version  : 0.9.0
-Release  : 3
+Release  : 4
 URL      : https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.tar.gz
 Source0  : https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.tar.gz
 Summary  : An AMQP 0-9-1 client library
@@ -71,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542420361
+export SOURCE_DATE_EPOCH=1542430179
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -86,7 +86,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1542420361
+export SOURCE_DATE_EPOCH=1542430179
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rabbitmq-c
 cp LICENSE-MIT %{buildroot}/usr/share/package-licenses/rabbitmq-c/LICENSE-MIT
