@@ -4,19 +4,22 @@
 #
 Name     : rabbitmq-c
 Version  : 0.9.0
-Release  : 2
+Release  : 3
 URL      : https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.tar.gz
 Source0  : https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.tar.gz
 Summary  : An AMQP 0-9-1 client library
 Group    : Development/Tools
 License  : BSD-3-Clause MIT
-Requires: rabbitmq-c-lib
-Requires: rabbitmq-c-license
-Requires: rabbitmq-c-bin
+Requires: rabbitmq-c-bin = %{version}-%{release}
+Requires: rabbitmq-c-lib = %{version}-%{release}
+Requires: rabbitmq-c-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : doxygen
+BuildRequires : glibc-dev
 BuildRequires : openssl-dev
+BuildRequires : pkg-config
 BuildRequires : popt-dev
+BuildRequires : python3
 BuildRequires : xmlto
 
 %description
@@ -26,7 +29,7 @@ BuildRequires : xmlto
 %package bin
 Summary: bin components for the rabbitmq-c package.
 Group: Binaries
-Requires: rabbitmq-c-license
+Requires: rabbitmq-c-license = %{version}-%{release}
 
 %description bin
 bin components for the rabbitmq-c package.
@@ -35,9 +38,9 @@ bin components for the rabbitmq-c package.
 %package dev
 Summary: dev components for the rabbitmq-c package.
 Group: Development
-Requires: rabbitmq-c-lib
-Requires: rabbitmq-c-bin
-Provides: rabbitmq-c-devel
+Requires: rabbitmq-c-lib = %{version}-%{release}
+Requires: rabbitmq-c-bin = %{version}-%{release}
+Provides: rabbitmq-c-devel = %{version}-%{release}
 
 %description dev
 dev components for the rabbitmq-c package.
@@ -46,7 +49,7 @@ dev components for the rabbitmq-c package.
 %package lib
 Summary: lib components for the rabbitmq-c package.
 Group: Libraries
-Requires: rabbitmq-c-license
+Requires: rabbitmq-c-license = %{version}-%{release}
 
 %description lib
 lib components for the rabbitmq-c package.
@@ -68,11 +71,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532204600
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1542420361
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %check
@@ -80,14 +83,14 @@ export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-pushd clr-build ; make test ||: ; popd
+cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1532204600
+export SOURCE_DATE_EPOCH=1542420361
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/rabbitmq-c
-cp LICENSE-MIT %{buildroot}/usr/share/doc/rabbitmq-c/LICENSE-MIT
-cp cmake/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/rabbitmq-c/cmake_COPYING-CMAKE-SCRIPTS
+mkdir -p %{buildroot}/usr/share/package-licenses/rabbitmq-c
+cp LICENSE-MIT %{buildroot}/usr/share/package-licenses/rabbitmq-c/LICENSE-MIT
+cp cmake/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/rabbitmq-c/cmake_COPYING-CMAKE-SCRIPTS
 pushd clr-build
 %make_install
 popd
@@ -115,6 +118,6 @@ popd
 /usr/lib64/librabbitmq.so.4.3.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/rabbitmq-c/LICENSE-MIT
-/usr/share/doc/rabbitmq-c/cmake_COPYING-CMAKE-SCRIPTS
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/rabbitmq-c/LICENSE-MIT
+/usr/share/package-licenses/rabbitmq-c/cmake_COPYING-CMAKE-SCRIPTS
