@@ -4,7 +4,7 @@
 #
 Name     : rabbitmq-c
 Version  : 0.9.0
-Release  : 6
+Release  : 7
 URL      : https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.tar.gz
 Source0  : https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.tar.gz
 Summary  : An AMQP 0-9-1 client library
@@ -41,6 +41,7 @@ Group: Development
 Requires: rabbitmq-c-lib = %{version}-%{release}
 Requires: rabbitmq-c-bin = %{version}-%{release}
 Provides: rabbitmq-c-devel = %{version}-%{release}
+Requires: rabbitmq-c = %{version}-%{release}
 
 %description dev
 dev components for the rabbitmq-c package.
@@ -65,32 +66,38 @@ license components for the rabbitmq-c package.
 
 %prep
 %setup -q -n rabbitmq-c-0.9.0
+cd %{_builddir}/rabbitmq-c-0.9.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1542430179
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604604299
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1542430179
+export SOURCE_DATE_EPOCH=1604604299
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/rabbitmq-c
-cp LICENSE-MIT %{buildroot}/usr/share/package-licenses/rabbitmq-c/LICENSE-MIT
-cp cmake/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/rabbitmq-c/cmake_COPYING-CMAKE-SCRIPTS
+cp %{_builddir}/rabbitmq-c-0.9.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rabbitmq-c/90e8d215392f6bdbf05c870e2d2c0b73001ce858
+cp %{_builddir}/rabbitmq-c-0.9.0/cmake/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/rabbitmq-c/77976f406ba34009d9ba5a43b882fe6de68e5175
 pushd clr-build
 %make_install
 popd
@@ -108,7 +115,10 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/amqp.h
+/usr/include/amqp_framing.h
+/usr/include/amqp_ssl_socket.h
+/usr/include/amqp_tcp_socket.h
 /usr/lib64/librabbitmq.so
 /usr/lib64/pkgconfig/librabbitmq.pc
 
@@ -119,5 +129,5 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/rabbitmq-c/LICENSE-MIT
-/usr/share/package-licenses/rabbitmq-c/cmake_COPYING-CMAKE-SCRIPTS
+/usr/share/package-licenses/rabbitmq-c/77976f406ba34009d9ba5a43b882fe6de68e5175
+/usr/share/package-licenses/rabbitmq-c/90e8d215392f6bdbf05c870e2d2c0b73001ce858
