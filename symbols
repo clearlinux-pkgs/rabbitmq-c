@@ -83,6 +83,7 @@ librabbitmq.so.4:amqp_simple_wait_method
 librabbitmq.so.4:amqp_socket_get_sockfd
 librabbitmq.so.4:amqp_socket_open
 librabbitmq.so.4:amqp_socket_open_noblock
+librabbitmq.so.4:amqp_ssl_socket_get_context
 librabbitmq.so.4:amqp_ssl_socket_new
 librabbitmq.so.4:amqp_ssl_socket_set_cacert
 librabbitmq.so.4:amqp_ssl_socket_set_key
