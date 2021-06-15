@@ -75,6 +75,7 @@ librabbitmq.so.4:amqp_set_handshake_timeout
 librabbitmq.so.4:amqp_set_initialize_ssl_library
 librabbitmq.so.4:amqp_set_rpc_timeout
 librabbitmq.so.4:amqp_set_sockfd
+librabbitmq.so.4:amqp_set_ssl_engine
 librabbitmq.so.4:amqp_simple_rpc
 librabbitmq.so.4:amqp_simple_rpc_decoded
 librabbitmq.so.4:amqp_simple_wait_frame
@@ -88,6 +89,8 @@ librabbitmq.so.4:amqp_ssl_socket_new
 librabbitmq.so.4:amqp_ssl_socket_set_cacert
 librabbitmq.so.4:amqp_ssl_socket_set_key
 librabbitmq.so.4:amqp_ssl_socket_set_key_buffer
+librabbitmq.so.4:amqp_ssl_socket_set_key_engine
+librabbitmq.so.4:amqp_ssl_socket_set_key_passwd
 librabbitmq.so.4:amqp_ssl_socket_set_ssl_versions
 librabbitmq.so.4:amqp_ssl_socket_set_verify
 librabbitmq.so.4:amqp_ssl_socket_set_verify_hostname
