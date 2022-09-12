@@ -4,7 +4,7 @@
 #
 Name     : rabbitmq-c
 Version  : 0.11.0
-Release  : 12
+Release  : 13
 URL      : https://github.com/alanxz/rabbitmq-c/archive/v0.11.0/rabbitmq-c-0.11.0.tar.gz
 Source0  : https://github.com/alanxz/rabbitmq-c/archive/v0.11.0/rabbitmq-c-0.11.0.tar.gz
 Summary  : An AMQP 0-9-1 client library
