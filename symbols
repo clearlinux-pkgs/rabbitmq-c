@@ -15,6 +15,7 @@ librabbitmq.so.4:amqp_channel_flow
 librabbitmq.so.4:amqp_channel_open
 librabbitmq.so.4:amqp_confirm_select
 librabbitmq.so.4:amqp_connection_close
+librabbitmq.so.4:amqp_connection_update_secret
 librabbitmq.so.4:amqp_constant_is_hard_error
 librabbitmq.so.4:amqp_constant_name
 librabbitmq.so.4:amqp_consume_message
@@ -84,6 +85,7 @@ librabbitmq.so.4:amqp_simple_wait_method
 librabbitmq.so.4:amqp_socket_get_sockfd
 librabbitmq.so.4:amqp_socket_open
 librabbitmq.so.4:amqp_socket_open_noblock
+librabbitmq.so.4:amqp_ssl_socket_enable_default_verify_paths
 librabbitmq.so.4:amqp_ssl_socket_get_context
 librabbitmq.so.4:amqp_ssl_socket_new
 librabbitmq.so.4:amqp_ssl_socket_set_cacert
