@@ -61,6 +61,7 @@ librabbitmq.so.4:amqp_open_socket
 librabbitmq.so.4:amqp_parse_url
 librabbitmq.so.4:amqp_pool_alloc
 librabbitmq.so.4:amqp_pool_alloc_bytes
+librabbitmq.so.4:amqp_publisher_confirm_wait
 librabbitmq.so.4:amqp_queue_bind
 librabbitmq.so.4:amqp_queue_declare
 librabbitmq.so.4:amqp_queue_delete
